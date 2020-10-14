@@ -81,3 +81,51 @@ body {
       .cta-top__textbox--button:hover {
         color: #1dace3;
         background-color: #f7f7f7; }
+
+.header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 7rem;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15); }
+  .header__left {
+    width: 30%; }
+    .header__left--image {
+      display: flex;
+      width: 15%;
+      cursor: pointer; }
+  .header__center {
+    display: flex;
+    width: 40%;
+    justify-content: center; }
+  .header__right {
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    padding-right: 4rem; }
+    .header__right--login {
+      height: 4rem;
+      width: 12rem;
+      border-radius: 10rem;
+      background-color: #1dace3;
+      color: #f7f7f7;
+      border: none;
+      font-weight: 800;
+      font-size: 1.4rem;
+      outline: none;
+      -webkit-appearance: none;
+      transition: all 0.4s;
+      cursor: pointer; }
+      .header__right--login:hover {
+        background-color: #f7f7f7;
+        color: #1dace3;
+        border: 2px solid #1dace3; }
+    .header__right--cart {
+      display: flex;
+      margin-right: 1.6rem;
+      align-self: center;
+      height: 3rem;
+      width: 3rem;
+      cursor: pointer; }

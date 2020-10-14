@@ -1,0 +1,15 @@
+import React, { Fragment } from "react";
+import CtaTop from "../components/ctaTop/CtaTop";
+import Header from "../components/header/Header";
+
+
+const Lending = () => {
+  return (
+    <Fragment>
+      <Header />
+      <CtaTop />
+    </Fragment>
+  );
+};
+
+export default Lending;
