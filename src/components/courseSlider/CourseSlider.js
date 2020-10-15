@@ -4,8 +4,31 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const CourseSlider = () => {
   const [courseCount, setCourseCount] = useState(0);
+  const [courseSliderAnimate, setCourSliderAnimate] = useState(
+    "course-slider__courses"
+  );
   let showCourses = 3;
   let courseCopy = [...courses];
+
+  const changeCourseCount = (e, forward) => {
+    e.stopPropagation();
+    forward
+      ? setCourSliderAnimate("course-slider__courses course-slider__slideout")
+      : setCourSliderAnimate(
+          "course-slider__courses course-slider__slideout-right"
+        );
+    setTimeout(() => {
+      if (forward) {
+        setCourseCount(courseCount + showCourses);
+        setCourSliderAnimate("course-slider__courses course-slider__slidein");
+      } else {
+        setCourseCount(courseCount - showCourses);
+        setCourSliderAnimate(
+          "course-slider__courses course-slider__slidein-right"
+        );
+      }
+    }, 150);
+  };
 
   const courseList = courseCopy.map((c) => (
     <div key={c.position} className="course-slider__course">
@@ -39,11 +62,17 @@ const CourseSlider = () => {
       <div className="course-slider__title">Top Courses</div>
       <div className="course-slider__underline" />
       <div className="course-slider__container">
-        <div className="course-slider__course--back">
+        <div
+          className="course-slider__course--back"
+          onClick={(e) => changeCourseCount(e)}
+        >
           <FaArrowLeft />
         </div>
-        <div className="course-slider__courses">{activeList}</div>
-        <div className="course-slider__course--forward">
+        <div className={courseSliderAnimate}>{activeList}</div>
+        <div
+          className="course-slider__course--forward"
+          onClick={(e) => changeCourseCount(e, true)}
+        >
           <FaArrowRight />
         </div>
       </div>
