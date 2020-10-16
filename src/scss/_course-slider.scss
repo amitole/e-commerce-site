@@ -140,6 +140,13 @@
         margin-right: 2.5rem;
       }
 
+      &--strike {
+        font-size: 1.5rem;
+        text-decoration: line-through;
+        color: $color-gray-dark;
+        margin: 0.8rem;
+      }
+
       &--button {
         height: 4rem;
         width: 100%;
@@ -161,6 +168,14 @@
     display: grid;
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr;
+
+    @include sm {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include tn {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__slideout {

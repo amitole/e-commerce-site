@@ -1,32 +1,48 @@
 import React, { useState } from "react";
-import { courses } from "../../dummyData/courses";
+import { courses, sale } from "../../dummyData/courses";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import useWindoeSize from "../../customHooks/useWindowsSize";
 
 const CourseSlider = () => {
   const [courseCount, setCourseCount] = useState(0);
   const [courseSliderAnimate, setCourSliderAnimate] = useState(
     "course-slider__courses"
   );
+
+  const { width } = useWindoeSize();
   let showCourses = 3;
+  if (width <= 596) showCourses = 2;
+
   let courseCopy = [...courses];
 
-  const changeCourseCount = (e, forward) => {
+  courseCopy.push({
+    title: "See More Courses",
+    price: " varies",
+    author: "our authors",
+    img: require("../../imgs/books.jpg"),
+    position: 9999999999999,
+    id: 9999999999999,
+  });
+
+  const changeCourseCountBack = (e) => {
     e.stopPropagation();
-    forward
-      ? setCourSliderAnimate("course-slider__courses course-slider__slideout")
-      : setCourSliderAnimate(
-          "course-slider__courses course-slider__slideout-right"
-        );
+    setCourSliderAnimate(
+      "course-slider__courses course-slider__slideout-right"
+    );
     setTimeout(() => {
-      if (forward) {
-        setCourseCount(courseCount + showCourses);
-        setCourSliderAnimate("course-slider__courses course-slider__slidein");
-      } else {
-        setCourseCount(courseCount - showCourses);
-        setCourSliderAnimate(
-          "course-slider__courses course-slider__slidein-right"
-        );
-      }
+      setCourseCount(courseCount - showCourses);
+      setCourSliderAnimate(
+        "course-slider__courses course-slider__slidein-right"
+      );
+    }, 150);
+  };
+
+  const changeCourseCountForward = (e) => {
+    e.stopPropagation();
+    setCourSliderAnimate("course-slider__courses course-slider__slideout");
+    setTimeout(() => {
+      setCourseCount(courseCount + showCourses);
+      setCourSliderAnimate("course-slider__courses course-slider__slidein");
     }, 150);
   };
 
@@ -38,12 +54,27 @@ const CourseSlider = () => {
         <div className="course-slider__course--bottom--author">
           by: {c.author}
         </div>
-        <div className="course-slider__course--bottom--price">{c.price}</div>
-        <input
-          className="course-slider__course--bottom--button"
-          type="submit"
-          value="add to cart"
-        />
+
+        {c.saleOptIn && sale ? (
+          <div className="course-slider__course--bottom--price">
+            <span className="course-slider__course--bottom--strike">
+              ${c.price}
+            </span>
+            Sale ${c.price * sale}
+          </div>
+        ) : (
+          <div className="course-slider__course--bottom--price">${c.price}</div>
+        )}
+
+        {c.position === 9999999999999 ? (
+          <div />
+        ) : (
+          <input
+            className="course-slider__course--bottom--button"
+            type="submit"
+            value="add to cart"
+          />
+        )}
       </div>
     </div>
   ));
@@ -62,19 +93,27 @@ const CourseSlider = () => {
       <div className="course-slider__title">Top Courses</div>
       <div className="course-slider__underline" />
       <div className="course-slider__container">
-        <div
-          className="course-slider__course--back"
-          onClick={(e) => changeCourseCount(e)}
-        >
-          <FaArrowLeft />
-        </div>
+        {courseCount === 0 ? (
+          <div />
+        ) : (
+          <div
+            className="course-slider__course--back"
+            onClick={(e) => changeCourseCountBack(e)}
+          >
+            <FaArrowLeft />
+          </div>
+        )}
         <div className={courseSliderAnimate}>{activeList}</div>
-        <div
-          className="course-slider__course--forward"
-          onClick={(e) => changeCourseCount(e, true)}
-        >
-          <FaArrowRight />
-        </div>
+        {courseCount + showCourses >= courseCopy.length ? (
+          <div />
+        ) : (
+          <div
+            className="course-slider__course--forward"
+            onClick={(e) => changeCourseCountForward(e)}
+          >
+            <FaArrowRight />
+          </div>
+        )}
       </div>
     </div>
   );
