@@ -1,0 +1,46 @@
+@import "./variables";
+
+.auth-comp {
+  display: flex;
+  width: 85vw;
+  margin: auto;
+  background-image: linear-gradient(
+      to right,
+      $color-transparent 35%,
+      $color-gray-light 50%
+    ),
+    url(/static/media/keeplearning.f9eb69f3.jpg);
+  background-size: contain;
+
+  @include md {
+    background-image: url(/static/media/keeplearning.f9eb69f3.jpg);
+    background-size: cover;
+    height: 50rem;
+    width: 100vw;
+  }
+
+  &__left {
+    width: 100%;
+
+    @include md {
+      width: 0;
+    }
+  }
+
+  &__right {
+    padding: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    justify-content: auto;
+    overflow: hidden;
+    width: 100%;
+
+    @include md {
+      background-image: radial-gradient(
+        circle,
+        rgba($color-gray-light, 1) 30%,
+        rgba($color-gray-light, 0.1) 70%
+      );
+    }
+  }
+}

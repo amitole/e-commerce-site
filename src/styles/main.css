@@ -449,3 +449,31 @@ body {
       .auth__form--submit:hover {
         color: #1dace3;
         background-color: #f7f7f7; }
+
+.auth-comp {
+  display: flex;
+  width: 85vw;
+  margin: auto;
+  background-image: linear-gradient(to right, #ffffff00 35%, #f7f7f7 50%), url(/static/media/keeplearning.f9eb69f3.jpg);
+  background-size: contain; }
+  @media (max-width: 768px) {
+    .auth-comp {
+      background-image: url(/static/media/keeplearning.f9eb69f3.jpg);
+      background-size: cover;
+      height: 50rem;
+      width: 100vw; } }
+  .auth-comp__left {
+    width: 100%; }
+    @media (max-width: 768px) {
+      .auth-comp__left {
+        width: 0; } }
+  .auth-comp__right {
+    padding: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    justify-content: auto;
+    overflow: hidden;
+    width: 100%; }
+    @media (max-width: 768px) {
+      .auth-comp__right {
+        background-image: radial-gradient(circle, #f7f7f7 30%, rgba(247, 247, 247, 0.1) 70%); } }

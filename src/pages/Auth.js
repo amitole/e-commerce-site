@@ -1,12 +1,8 @@
 import React from "react";
-import Authenticate from "../components/auth/Authenticate";
+import AuthComp from "../components/auth/AuthComp";
 
 const Auth = () => {
-  return (
-    <div>
-      <Authenticate />
-    </div>
-  );
+  return <AuthComp />;
 };
 
 export default Auth;
