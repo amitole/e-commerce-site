@@ -5,6 +5,7 @@
   position: relative;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
   width: 100vw;
   height: 7rem;
   box-shadow: 0 0.3rem 0.6rem rgba($color-black, 0.15);
@@ -14,8 +15,15 @@
 
     &--image {
       display: flex;
-      width: 90%;
+      width: 70%;
       cursor: pointer;
+
+      @include sm {
+        width: 90%;
+      }
+      @include md {
+        width: 90%;
+      }
     }
   }
   &__center {
