@@ -27,7 +27,7 @@ const Footer = () => {
           alt="lower-footer-logo"
         />
         <div className="footer__lowest--copyright">
-          &#169; Amit 'Tole' Toledano
+          &#169; Amit Toledano
         </div>
       </div>
     </div>
