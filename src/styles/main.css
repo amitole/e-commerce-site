@@ -454,11 +454,11 @@ body {
   display: flex;
   width: 85vw;
   margin: auto;
-  background-image: linear-gradient(to right, #ffffff00 35%, #f7f7f7 50%), url(/static/media/keeplearning.f9eb69f3.jpg);
+  background-image: linear-gradient(to right, #ffffff00 35%, #f7f7f7 50%), url("../imgs//keeplearning.jpg");
   background-size: contain; }
   @media (max-width: 768px) {
     .auth-comp {
-      background-image: url(/static/media/keeplearning.f9eb69f3.jpg);
+      background-image: url("../imgs//keeplearning.jpg");
       background-size: cover;
       height: 50rem;
       width: 100vw; } }
@@ -477,3 +477,25 @@ body {
     @media (max-width: 768px) {
       .auth-comp__right {
         background-image: radial-gradient(circle, #f7f7f7 30%, rgba(247, 247, 247, 0.1) 70%); } }
+
+.product-cta {
+  position: relative;
+  display: flex;
+  widows: 100vw;
+  background-color: #29303b;
+  height: 36rem; }
+  .product-cta__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    widows: 50%;
+    margin: 3rem;
+    color: #f7f7f7; }
+    .product-cta__info--title {
+      font-size: 3.5rem;
+      font-weight: 800; }
+    .product-cta__info--tagline {
+      font-size: 1.8rem; }
+    .product-cta__info--author {
+      font-size: 1.6rem;
+      font-weight: 800; }

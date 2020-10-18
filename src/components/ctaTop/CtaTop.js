@@ -1,6 +1,10 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
-const CtaTop = () => {
+const CtaTop = (props) => {
+  const navProduct = () => {
+    props.history.push("/product");
+  };
   return (
     <div className="cta-top">
       <div className="cta-top__img" />
@@ -18,10 +22,13 @@ const CtaTop = () => {
           className="cta-top__textbox--button"
           type="submit"
           value="Learn The Alchemy of Automation"
+          onClick={() => {
+            navProduct();
+          }}
         />
       </div>
     </div>
   );
 };
 
-export default CtaTop;
+export default withRouter(CtaTop);

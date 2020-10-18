@@ -9,11 +9,11 @@
       $color-transparent 35%,
       $color-gray-light 50%
     ),
-    url(/static/media/keeplearning.f9eb69f3.jpg);
+    url("../imgs//keeplearning.jpg");
   background-size: contain;
 
   @include md {
-    background-image: url(/static/media/keeplearning.f9eb69f3.jpg);
+    background-image: url("../imgs//keeplearning.jpg");
     background-size: cover;
     height: 50rem;
     width: 100vw;

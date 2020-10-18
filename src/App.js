@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import Footer from "./components/footer/Footer";
+import Product from "./pages/Product";
 
 import "./styles/main.css";
 
@@ -16,6 +17,9 @@ function App() {
           <Switch>
             <Route exect path="/auth">
               <Auth />
+            </Route>
+            <Route exect path="/product">
+              <Product />
             </Route>
             <Route exect path="/">
               <Landing />;
