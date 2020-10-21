@@ -5,12 +5,14 @@ import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import Footer from "./components/footer/Footer";
 import Product from "./pages/Product";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 import "./styles/main.css";
 
 function App() {
   return (
-    <Fragment>
+    <Provider store={store}>
       <Router>
         <Header />
         <div className="page-container">
@@ -28,7 +30,7 @@ function App() {
         </div>
         <Footer />
       </Router>
-    </Fragment>
+    </Provider>
   );
 }
 
