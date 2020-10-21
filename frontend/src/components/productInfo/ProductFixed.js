@@ -18,8 +18,6 @@ const ProductFixed = () => {
 
   const scrollTracking = useScrollTracker();
 
-  console.log(scrollTracking);
-
   const fixedClass = tooClose
     ? "product-cta__buynow product-cta__buynow--offset"
     : "product-cta__buynow";

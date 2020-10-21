@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./schemas/user");
+const authRoutes = require("./routes/authRoutes.js");
 
 require("dotenv").config();
 
@@ -19,20 +20,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-app.use("/api/v1/auth/signup", async (req, res) => {
-  try {
-    console.log(req.body);
-    const { email, password } = req.body;
-    const newUser = await User.create({
-      email,
-      password,
-    });
-    console.log(newUser);
-    res.status(201).json({ user: newUser });
-  } catch (err) {
-    console.log("error occured");
-  }
-});
+app.use("/api/v1/auth", authRoutes);
 
 const DB = process.env.DATABASE;
 
