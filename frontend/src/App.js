@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import Product from "./pages/Product";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Alert from "./components/alert/Alert";
 
 import "./styles/main.css";
 
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Header />
         <div className="page-container">
+          <Alert />
           <Switch>
             <Route exect path="/auth">
               <Auth />
