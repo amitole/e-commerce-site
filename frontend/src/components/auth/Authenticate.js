@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../../imgs/logo.svg";
 import { signupAction, loginAction } from "../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
+import { setAlert } from "../../redux/actions/alertAction";
 
 const Authenticate = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,9 @@ const Authenticate = () => {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (password.length < 8) {
+      return dispatch(setAlert("password must be 8 charaters or more"));
+    }
     submitVal === "Login"
       ? dispatch(loginAction(email, password))
       : dispatch(signupAction(email, password));

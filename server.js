@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./schemas/user");
 const authRoutes = require("./routes/authRoutes.js");
+const { sendError } = require("./util/ErrorHandler");
 
 require("dotenv").config();
 
@@ -21,6 +22,10 @@ app.use(
 app.use(bodyParser.json());
 
 app.use("/api/v1/auth", authRoutes);
+
+app.use((err, req, res, next) => {
+  sendError(err, res);
+});
 
 const DB = process.env.DATABASE;
 

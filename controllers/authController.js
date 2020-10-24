@@ -1,6 +1,7 @@
 const User = require("../schemas/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { ErrorHandler } = require("../util/ErrorHandler");
 
 require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -34,9 +35,18 @@ const sendToken = (user, statusCode, req, res) => {
   });
 };
 
-exports.signup = async (req, res) => {
+exports.signup = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return next(new ErrorHandler(400, "Please enter email and password"));
+    }
+    if (password.length < 8) {
+      return next(
+        new ErrorHandler(401, "Password must be at least 8 charecters")
+      );
+    }
     const pw = await encryptPW(password);
     const newUser = await User.create({
       email,
@@ -45,20 +55,24 @@ exports.signup = async (req, res) => {
     newUser.password = null;
     sendToken(newUser, 201, req, res);
   } catch (err) {
-    console.log("error occured");
+    next(err);
   }
 };
 
-exports.login = async (req, res) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select("+password");
+    if (!user) {
+      return next(new ErrorHandler(400, "Incorrect email or password"));
+    }
     const compared = await bcrypt.compare(password, user.password);
     user.password = null;
-    compared
-      ? sendToken(user, 200, req, res)
-      : res.status(400).json({ massage: "Login failed" });
+    if (!compared) {
+      return next(new ErrorHandler(400, "Incorrect email or password"));
+    }
+    sendToken(user, 200, req, res);
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 };

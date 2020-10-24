@@ -1,5 +1,6 @@
 import { GET_USER } from "../types";
 import API from "../../util/API";
+import { setAlert } from "./alertAction";
 
 const options = { headers: { "Content-Type": "application/json" } };
 
@@ -14,7 +15,7 @@ export const signupAction = (email, password) => async (dispath) => {
     dispath({ type: GET_USER, payload: res.data.user });
     console.log("res", res.data.user);
   } catch (err) {
-    console.log("err", err);
+    dispath(setAlert(err.response.data.message));
   }
 };
 
@@ -27,6 +28,6 @@ export const loginAction = (email, password) => async (dispath) => {
     dispath({ type: GET_USER, payload: res.data.user });
     console.log("res", res.data.user);
   } catch (err) {
-    console.log("err", err);
+    dispath(setAlert(err.response.data.message));
   }
 };
