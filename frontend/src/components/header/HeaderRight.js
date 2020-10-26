@@ -1,8 +1,8 @@
 import React from "react";
-import HeaderLogin from "./HeaderLogin";
-import HeaderMenu from "./HeaderMenu";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector } from "react-redux";
+import HeaderLogin from "./HeaderLogin";
+import HeaderMenu from "./HeaderMenu";
 
 const HeaderRight = () => {
   const { clearance } = useSelector((state) => state.userReducer.user);

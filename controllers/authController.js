@@ -23,7 +23,7 @@ const sendToken = (user, statusCode, req, res) => {
   const token = makeJwt(user._id);
   const options = {
     expires: new Date(Date.now() + JWT_EXPIRATION_NUM),
-    secure: NODE_ENV === "production" ? true : false,
+    secure: NODE_ENV === "production",
     httpOnly: NODE_ENV === "production",
   };
   res.cookie("jwt", token, options);
@@ -38,13 +38,12 @@ const sendToken = (user, statusCode, req, res) => {
 exports.signup = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     if (!email || !password) {
-      return next(new ErrorHandler(400, "Please enter email and password"));
+      return next(new ErrorHandler(400, "Please enter an email and password"));
     }
     if (password.length < 8) {
       return next(
-        new ErrorHandler(401, "Password must be at least 8 charecters")
+        new ErrorHandler(401, "Passwords must be at least 8 characters")
       );
     }
     const pw = await encryptPW(password);
@@ -55,7 +54,7 @@ exports.signup = async (req, res, next) => {
     newUser.password = null;
     sendToken(newUser, 201, req, res);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -73,7 +72,7 @@ exports.login = async (req, res, next) => {
     }
     sendToken(user, 200, req, res);
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 
@@ -87,6 +86,43 @@ exports.logout = async (req, res, next) => {
     res.cookie("jwt", "expiredtoken", options);
     res.status(200).json({
       status: "success",
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+const decryptJWT = async (token) => {
+  return await jwt.verify(token, JWT_SECRET);
+};
+
+exports.checkUserCred = async (req, res, next) => {
+  try {
+    let token;
+    if (req.cookies) token = req.cookies.jwt;
+
+    if (!token || token === "expiredtoken") {
+      return next(
+        new ErrorHandler(401, "User does not have valid credentials")
+      );
+    }
+
+    const jwtInfo = await decryptJWT(token);
+    console.log(jwtInfo);
+
+    if (jwtInfo.exp < Date.now() / 1000) {
+      return next(
+        new ErrorHandler(401, "User does not have valid credentials")
+      );
+    }
+    const user = await User.findById(jwtInfo.id);
+    if (!user) {
+      return next(new ErrorHandler(404, "User not found"));
+    }
+
+    res.status(200).json({
+      status: "success",
+      user,
     });
   } catch (err) {
     return next(err);

@@ -1,4 +1,4 @@
-import { GET_USER, LOGOUT } from "../types";
+import { GET_USER, LOGOUT, CHECK_USER_FAIL } from "../types";
 import API from "../../util/API";
 import { setAlert } from "./alertAction";
 
@@ -39,5 +39,15 @@ export const logoutAction = () => async (dispath) => {
     dispath({ type: LOGOUT });
   } catch (err) {
     dispath(setAlert(err.response.data.message));
+  }
+};
+
+export const checkUserAction = () => async (dispatch) => {
+  const url = "/auth/checkuser";
+  try {
+    let res = await API.get(url);
+    dispatch({ type: GET_USER, payload: res.data.user });
+  } catch (err) {
+    dispatch({ type: CHECK_USER_FAIL });
   }
 };

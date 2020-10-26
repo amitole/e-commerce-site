@@ -1,16 +1,19 @@
-import React from "react";
-
+import React, { Fragment } from "react";
 import HeaderLeft from "./HeaderLeft";
 import HeaderRight from "./HeaderRight";
 import HeaderCenter from "./HeaderCenter";
+import CheckUser from "../../util/CheckUser";
 
 const Header = () => {
   return (
-    <div className="header">
-      <HeaderLeft />
-      <HeaderCenter />
-      <HeaderRight />
-    </div>
+    <Fragment>
+      <CheckUser />
+      <div className="header">
+        <HeaderLeft />
+        <HeaderCenter />
+        <HeaderRight />
+      </div>
+    </Fragment>
   );
 };
 
