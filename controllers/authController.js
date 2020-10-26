@@ -76,3 +76,19 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.logout = async (req, res, next) => {
+  try {
+    const options = {
+      expires: new Date(Date.now + 10000),
+      secure: NODE_ENV === "production",
+      httpOnly: NODE_ENV === "production",
+    };
+    res.cookie("jwt", "expiredtoken", options);
+    res.status(200).json({
+      status: "success",
+    });
+  } catch (err) {
+    return next(err);
+  }
+};

@@ -7,7 +7,7 @@
   background-image: linear-gradient(
       to right,
       $color-transparent 35%,
-      $color-gray-light 50%
+      $color-grey-light 50%
     ),
     url("../imgs//keeplearning.jpg");
   background-size: contain;
@@ -38,8 +38,8 @@
     @include md {
       background-image: radial-gradient(
         circle,
-        rgba($color-gray-light, 1) 30%,
-        rgba($color-gray-light, 0.1) 70%
+        rgba($color-grey-light, 1) 30%,
+        rgba($color-grey-light, 0.1) 70%
       );
     }
   }

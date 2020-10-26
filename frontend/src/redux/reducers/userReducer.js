@@ -1,7 +1,11 @@
-import { GET_USER } from "../types";
+import { GET_USER, LOGOUT } from "../types";
 
 const INITAL_STATE = {
-  user: {},
+  user: {
+    clearance: "",
+    email: "",
+    _id: "",
+  },
 };
 
 const userReducer = (state = INITAL_STATE, action) => {
@@ -12,6 +16,8 @@ const userReducer = (state = INITAL_STATE, action) => {
         ...state,
         user: payload,
       };
+    case LOGOUT:
+      return INITAL_STATE;
     default:
       return state;
   }

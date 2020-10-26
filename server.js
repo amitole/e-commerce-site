@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const User = require("./schemas/user");
 const authRoutes = require("./routes/authRoutes.js");
 const { sendError } = require("./util/ErrorHandler");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
 
@@ -20,6 +21,7 @@ app.use(
 );
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 

@@ -16,7 +16,7 @@
     font-size: 1.6rem;
     font-weight: 800;
     z-index: 100;
-    color: $color-gray-dark;
+    color: $color-grey-dark;
 
     &--clicked {
         color: $color-blue-light;
@@ -56,7 +56,7 @@
       height: 3rem;
       border: 1px solid rgba($color-slate-dark, 0.4);
       border-radius: 10rem;
-      background-color: rgba($color-gray-light, 0.9);
+      background-color: rgba($color-grey-light, 0.9);
       outline: none;
       z-index: 100;
       padding-left: 1.4rem;
@@ -78,7 +78,7 @@
       font-weight: 800;
       border: 1px solid $color-blue-light;
       border-radius: 10rem;
-      color: $color-gray-light;
+      color: $color-grey-light;
       background-color: $color-blue-light;
       cursor: pointer;
       z-index: 100;
@@ -88,7 +88,7 @@
 
       &:hover {
         color: $color-blue-light;
-        background-color: $color-gray-light;
+        background-color: $color-grey-light;
       }
     }
   }

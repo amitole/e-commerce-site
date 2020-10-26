@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-const haederLogin = (props) => {
+const HeaderLogin = (props) => {
   const navLogin = () => {
     props.history.push("/auth");
   };
@@ -17,4 +17,4 @@ const haederLogin = (props) => {
   );
 };
 
-export default withRouter(haederLogin);
+export default withRouter(HeaderLogin);

@@ -92,31 +92,25 @@ body {
   position: relative;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
   width: 100vw;
   height: 7rem;
-  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15); }
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.15);
+  overflow-x: visible; }
   .header__left {
     width: 30%; }
     .header__left--image {
       display: flex;
-      width: 70%;
+      width: 90%;
       cursor: pointer; }
-      @media (max-width: 596px) {
-        .header__left--image {
-          width: 90%; } }
-      @media (max-width: 768px) {
-        .header__left--image {
-          width: 90%; } }
   .header__center {
     display: flex;
     width: 40%;
     justify-content: center; }
   .header__right {
     display: flex;
-    justify-content: flex-end;
     width: 30%;
-    padding-right: 4rem; }
+    padding-right: 4rem;
+    justify-content: flex-end; }
     .header__right--login {
       height: 4rem;
       width: 12rem;
@@ -127,8 +121,8 @@ body {
       font-weight: 800;
       font-size: 1.4rem;
       outline: none;
-      -webkit-appearance: none;
       transition: all 0.4s;
+      -webkit-appearance: none;
       cursor: pointer; }
       .header__right--login:hover {
         background-color: #f7f7f7;
@@ -136,8 +130,8 @@ body {
         border: 2px solid #1dace3; }
     .header__right--cart {
       display: flex;
-      margin-right: 1.6rem;
       align-self: center;
+      margin-right: 1.6rem;
       height: 3rem;
       width: 3rem;
       cursor: pointer; }
@@ -619,3 +613,40 @@ body {
   font-size: 2rem;
   font-weight: 600;
   z-index: 10000; }
+
+.header-menu {
+  font-size: 2.2rem;
+  cursor: pointer;
+  text-align: center;
+  align-self: center;
+  width: 12rem;
+  margin-top: 0.4rem; }
+  *:hover > .header-menu__expand {
+    visibility: visible;
+    height: auto;
+    opacity: 1; }
+  .header-menu__expand {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    height: 0;
+    width: 12rem;
+    z-index: 200000;
+    opacity: 0;
+    border: 2px solid #1dace3;
+    border-radius: 3rem;
+    background-color: #ffffff;
+    padding-top: 1.4rem;
+    transition: opacity 0.3s; }
+    .header-menu__expand--links {
+      display: flex;
+      flex-direction: column; }
+      .header-menu__expand--links--text {
+        text-decoration: none;
+        margin-bottom: 1.4rem;
+        font-weight: 800;
+        font-size: 1.6rem;
+        color: #1dace3; }
+        .header-menu__expand--links--text:hover {
+          color: #001a49; }
