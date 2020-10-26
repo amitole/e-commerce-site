@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Alert from "./components/alert/Alert";
+import ShoppingCart from "./pages/ShoppingCart";
 
 import "./styles/main.css";
 
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route exect path="/product">
               <Product />
+            </Route>
+            <Route exect path="/cart">
+              <ShoppingCart />
             </Route>
             <Route exect path="/">
               <Landing />;

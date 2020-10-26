@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { courses, sale } from "../../dummyData/courses";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import useWindoeSize from "../../customHooks/useWindowsSize";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../redux/actions/alertAction";
+import { addToCart } from "../../redux/actions/cartAction";
 
 const CourseSlider = () => {
   const [courseCount, setCourseCount] = useState(0);
@@ -11,7 +12,14 @@ const CourseSlider = () => {
     "course-slider__courses"
   );
 
+  const { cart } = useSelector((state) => state.cartReducer);
+
+  const cartAdd = (item) => {
+    dispatch(addToCart(cart, item));
+  };
+
   const { width } = useWindoeSize();
+
   let showCourses = 3;
   if (width <= 596) showCourses = 2;
 
@@ -19,9 +27,9 @@ const CourseSlider = () => {
 
   const dispatch = useDispatch();
 
-  const makeAlert = (el) => {
-    dispatch(setAlert(el.title));
-  };
+  // const makeAlert = (el) => {
+  //   dispatch(setAlert(el.title));
+  // };
 
   courseCopy.push({
     title: "See More Courses",
@@ -81,7 +89,7 @@ const CourseSlider = () => {
             className="course-slider__course--bottom--button"
             type="submit"
             value="add to cart"
-            onClick={() => makeAlert(c)}
+            onClick={() => cartAdd(c)}
           />
         )}
       </div>
